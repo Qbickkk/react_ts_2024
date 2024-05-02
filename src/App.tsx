@@ -1,8 +1,12 @@
+import {Characters} from "./components/characters /Characters";
+import {Recipes} from "./components/recipes/Recipes";
+
 const App = () => {
     return (
-        <div>
-            App
-        </div>
+        <>
+            {/*<Characters/>*/}
+            <Recipes/>
+        </>
     );
 };
 
