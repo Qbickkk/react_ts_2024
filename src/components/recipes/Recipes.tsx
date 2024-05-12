@@ -1,16 +1,14 @@
 import {FC, useEffect, useState} from "react";
-import {IRecipeProps, Recipe} from "../recipe/Recipe";
+import {Recipe} from "../recipe/Recipe";
+import {IRecipeProps} from "../../models/recipeModel";
+import {getAllRecipes} from "../../services/recipes.api.service";
 
 const Recipes: FC = () => {
 
     const [recipes, setRecipes] = useState<IRecipeProps[]>([]);
 
     useEffect(() => {
-        fetch('https://dummyjson.com/recipes')
-            .then(value => value.json())
-            .then(({recipes}) => {
-                setRecipes(recipes)
-            })
+        getAllRecipes().then(value => setRecipes(value.data.recipes))
     }, []);
 
 
