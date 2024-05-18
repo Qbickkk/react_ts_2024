@@ -1,24 +1,26 @@
-import {useState} from "react";
+import {useReducer, useState} from "react";
 interface IState {
     value: number;
 }
 
+function reducer(state:IState, action:{type: string; payload:number}) {
+
+
+    return null
+}
 
 const App = () => {
 
-    const [counter, setCounter] = useState<IState>({value: 0});
-
+    const [counter,dispatch ] = useReducer<any>(reducer, {value: 0});
 
     const increment = () => {
-            setCounter(prev => ({value: prev.value + 1}));
+        dispatch({type: 'increment', payload: 1})
     };
 
     const decrement = () => {
-            setCounter(prev => ({value: prev.value - 1}));
     };
 
     const reset = () => {
-            setCounter({value: 0});
     };
 
     return (
