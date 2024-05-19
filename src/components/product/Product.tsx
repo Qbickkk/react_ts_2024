@@ -1,5 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import {IFullProduct, IProduct} from "../../models/Product";
+import {getProductById} from "../../services/dummy.api.service";
 
 interface IProps {
     id: IProduct
@@ -7,14 +8,10 @@ interface IProps {
 
 const Product:FC<IProps> = ({id:{id}}) => {
 
-    const [product, setProduct] = useState<IFullProduct>(null)
+    const [product, setProduct] = useState<IFullProduct | null>(null)
 
     useEffect(() => {
-        fetch(`https://dummyjson.com/products/${id}`)
-        .then(value=>value.json())
-        .then(({data})=>{
-            setProduct(data)
-        })
+        getProductById(id).then(value => setProduct(value.data))
     }, [id]);
 
     console.log(product)
