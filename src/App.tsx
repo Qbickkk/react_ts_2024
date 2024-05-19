@@ -1,7 +1,13 @@
+import {useFetch} from "./custom-hooks/useFetch";
+
 const App = () => {
+
+    const data = useFetch<{id:number, title: string}[]>('/posts',[]);
+
+
     return (
         <div>
-             App
+            {data.map((item) => (<div>{item.id} {item.title}</div>))}
         </div>
     );
 };
