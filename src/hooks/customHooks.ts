@@ -20,6 +20,19 @@ import {useRef, useState} from "react";
 
 // 2. usePrevious - hook that allows a component to keep track of the previous value of a variable
 
-const usePrevious = (value: any) => {
-    const currentRef = useRef(value);
+const usePrevious = <T,>(value: T):T => {
+    const currentRef = useRef<T>(value);
+    const previousRef = useRef<T | undefined>();
+
+    if (currentRef.current !== value) {
+        previousRef.current = currentRef.current;
+    }
+    return previousRef.current;
+}
+usePrevious<number>(100)
+
+// 3. useStorage - hook that allows a component to store a value in the browser's LocalStorage
+
+const useStorage = () => {
+
 }
