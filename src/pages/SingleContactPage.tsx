@@ -1,30 +1,31 @@
 import {useLocation, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {IUser} from "../models/userModel";
+import {userService} from "../services/userService";
+import {useAppLocation} from "../hooks/useAppLocation";
 
 const SingleContactPage = () => {
 
     const {id} = useParams();
 
-    const {state: {contact: item}} = useLocation();
+    const {state: {contact: item}} = useAppLocation<{contact: IUser}>();
 
-    const [contact, setContact] = useState<any>({})
+    const [contact, setContact] = useState<IUser | null>(null);
 
     useEffect(() => {
         if (item) {
             setContact(item);
-        } else {
-            fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-                .then(value => value.json())
-                .then(value => {
-                    setContact(value)
-                })
+        } else if(id){
+           userService.getById(id).then(({data}) => setContact(data))
+        }else {
+            throw new Error('ggggggg2')
         }
     }, [id]);
 
 
     return (
         <div>
-            {contact.name} - {contact.username}
+            {contact && <>{contact.name} - {contact.username}</>}
         </div>
     );
 };
