@@ -5,7 +5,6 @@ const Header = () => {
         <div>
             <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
                 <NavLink to={'users'}>Users</NavLink>
-                <NavLink to={'posts'}>Posts</NavLink>
                 <NavLink to={'comments'}>Comments</NavLink>
             </div>
             <hr/>

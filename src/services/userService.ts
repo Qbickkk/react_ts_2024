@@ -5,7 +5,7 @@ import {urls} from "../constants/urls";
 
 const userService = {
     getAll:():Promise<AxiosResponse<IUser[]>> => apiService.get(urls.users.base),
-    getById:(id:string):Promise<AxiosResponse<IUser>> => apiService.get(urls.users.byId(id)),
+    getById:(id:number):Promise<AxiosResponse<IUser>> => apiService.get(urls.users.byId(id)),
 }
 
 export {

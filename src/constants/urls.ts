@@ -7,11 +7,10 @@ const comments = '/comments';
 const urls = {
     users:{
         base: users,
-        byId: (id: string) => `${users}${id}`,
+        byId: (id: number) => `${users}${id}`,
     },
     posts:{
-        base: posts,
-        byId: (id: string) => `${posts}${id}`,
+        byUserId: (userId: string) => `${users}/${userId}${posts}`,
     },
     comments:{
         base: comments,
